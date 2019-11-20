@@ -3,6 +3,7 @@ package com.ag.errorsbook;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -85,7 +86,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
         }
-
+        if(fragment ==null){
+            Toast.makeText(this,"f Null",Toast.LENGTH_LONG).show();
+        }
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 

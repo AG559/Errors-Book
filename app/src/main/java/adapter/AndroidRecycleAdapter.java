@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +34,11 @@ public class AndroidRecycleAdapter extends RecyclerView.Adapter<AndroidRecycleAd
 
     @Override
     public void onBindViewHolder(@NonNull AndroidRecyclerAdapterView holder, int position) {
-            
+        holder.title.setText(list.get(position).getTitle());
+        holder.name.setText(list.get(position).getAuthor());
+        holder.desc.setText(list.get(position).getDescription());
+        holder.date.setText(list.get(position).getDate());
+        holder.imageView.setImageResource(list.get(position).getImage());
     }
 
     @Override
@@ -41,9 +47,16 @@ public class AndroidRecycleAdapter extends RecyclerView.Adapter<AndroidRecycleAd
     }
 
     class AndroidRecyclerAdapterView extends RecyclerView.ViewHolder {
+        private TextView title, name, desc, date;
+        private ImageView imageView;
 
-         AndroidRecyclerAdapterView(@NonNull View itemView) {
+        AndroidRecyclerAdapterView(@NonNull View itemView) {
             super(itemView);
+            title = itemView.findViewById(R.id.tv_arecycler_row_title);
+            name = itemView.findViewById(R.id.tv_arecycler_row_name);
+            desc = itemView.findViewById(R.id.tv_arecycler_row_content);
+            date = itemView.findViewById(R.id.tv_arecycler_row_date);
+            imageView = itemView.findViewById(R.id.img_arecycler_row);
         }
     }
 }

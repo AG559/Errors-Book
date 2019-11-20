@@ -1,9 +1,10 @@
 package model;
 
 public class AndroidDataModel {
-    private String author,title,link,description,image,date;
+    private String author, title, link, description, date;
+    private int image;
 
-    public AndroidDataModel(String author, String title, String link, String description, String image, String date) {
+    public AndroidDataModel(String author, String title, String link, String description, int image, String date) {
         this.author = author;
         this.title = title;
         this.link = link;
@@ -28,7 +29,7 @@ public class AndroidDataModel {
         return description;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
