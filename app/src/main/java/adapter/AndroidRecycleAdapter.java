@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ag.errorsbook.R;
@@ -33,12 +35,18 @@ public class AndroidRecycleAdapter extends RecyclerView.Adapter<AndroidRecycleAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AndroidRecyclerAdapterView holder, int position) {
+    public void onBindViewHolder(@NonNull AndroidRecyclerAdapterView holder, final int position) {
         holder.title.setText(list.get(position).getTitle());
         holder.name.setText(list.get(position).getAuthor());
         holder.desc.setText(list.get(position).getDescription());
         holder.date.setText(list.get(position).getDate());
         holder.imageView.setImageResource(list.get(position).getImage());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,list.get(position).getAuthor(),Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -49,6 +57,7 @@ public class AndroidRecycleAdapter extends RecyclerView.Adapter<AndroidRecycleAd
     class AndroidRecyclerAdapterView extends RecyclerView.ViewHolder {
         private TextView title, name, desc, date;
         private ImageView imageView;
+        private CardView cardView;
 
         AndroidRecyclerAdapterView(@NonNull View itemView) {
             super(itemView);
@@ -57,6 +66,7 @@ public class AndroidRecycleAdapter extends RecyclerView.Adapter<AndroidRecycleAd
             desc = itemView.findViewById(R.id.tv_arecycler_row_content);
             date = itemView.findViewById(R.id.tv_arecycler_row_date);
             imageView = itemView.findViewById(R.id.img_arecycler_row);
+            cardView = itemView.findViewById(R.id.android_row_cardView);
         }
     }
 }

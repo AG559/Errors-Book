@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     android:elevation="3dp"
     android:layout_margin="8dp"
+    android:id="@+id/android_row_cardView"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
