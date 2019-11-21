@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ag.errorsbook.AndroidSingle;
 import com.ag.errorsbook.R;
 
 import java.util.ArrayList;
@@ -44,7 +46,10 @@ public class AndroidRecycleAdapter extends RecyclerView.Adapter<AndroidRecycleAd
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,list.get(position).getAuthor(),Toast.LENGTH_LONG).show();
+                Context context = v.getContext();
+                Intent intent = new Intent(context, AndroidSingle.class);
+                context.startActivity(intent);
+                Toast.makeText(context, list.get(position).getAuthor(), Toast.LENGTH_LONG).show();
             }
         });
     }
