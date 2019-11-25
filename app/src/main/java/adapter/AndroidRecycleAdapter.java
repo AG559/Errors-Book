@@ -2,6 +2,7 @@ package adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ag.errorsbook.AndroidSingle;
@@ -23,6 +25,7 @@ import model.AndroidDataModel;
 public class AndroidRecycleAdapter extends RecyclerView.Adapter<AndroidRecycleAdapter.AndroidRecyclerAdapterView> {
     private Context context;
     private ArrayList<AndroidDataModel> list;
+    private ArrayList<Integer> img_list;
 
     public AndroidRecycleAdapter(Context context, ArrayList<AndroidDataModel> list) {
         this.context = context;
@@ -38,16 +41,38 @@ public class AndroidRecycleAdapter extends RecyclerView.Adapter<AndroidRecycleAd
 
     @Override
     public void onBindViewHolder(@NonNull AndroidRecyclerAdapterView holder, final int position) {
-        holder.title.setText(list.get(position).getTitle());
-        holder.name.setText(list.get(position).getAuthor());
-        holder.desc.setText(list.get(position).getDescription());
-        holder.date.setText(list.get(position).getDate());
-        holder.imageView.setImageResource(list.get(position).getImage());
+        final String title = list.get(position).getTitle();
+        final String author = list.get(position).getAuthor();
+        final String description = list.get(position).getDescription();
+        final String date = list.get(position).getDate();
+        final TypedArray imgs = list.get(position).getImage();
+        if (title.length() > 70) {
+            holder.title.setText(title.subSequence(0, 70));
+        } else {
+            holder.title.setText(title);
+        }
+        holder.name.setText(author);
+        if (description.length() > 136) {
+            holder.desc.setText(HtmlCompat.fromHtml(description, 0).subSequence(0, 136));
+        } else {
+            holder.desc.setText(HtmlCompat.fromHtml(description, 0));
+        }
+        holder.date.setText(date);
+        holder.imageView.setImageDrawable(imgs.getDrawable(0));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
                 Intent intent = new Intent(context, AndroidSingle.class);
+                img_list = new ArrayList<>();
+                for (int i = 0; i < imgs.length(); i++) {
+                    img_list.add(imgs.getResourceId(i, 0));
+                }
+                intent.putExtra("title", title);
+                intent.putExtra("author", author);
+                intent.putExtra("description", description);
+                intent.putExtra("date", date);
+                intent.putExtra("img_array", img_list);
                 context.startActivity(intent);
                 Toast.makeText(context, list.get(position).getAuthor(), Toast.LENGTH_LONG).show();
             }

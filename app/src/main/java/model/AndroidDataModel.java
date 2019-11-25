@@ -1,10 +1,12 @@
 package model;
 
+import android.content.res.TypedArray;
+
 public class AndroidDataModel {
     private String author, title, link, description, date;
-    private int image;
+    private TypedArray image;
 
-    public AndroidDataModel(String author, String title, String link, String description, int image, String date) {
+    public AndroidDataModel(String author, String title, String link, String description, TypedArray image, String date) {
         this.author = author;
         this.title = title;
         this.link = link;
@@ -29,7 +31,7 @@ public class AndroidDataModel {
         return description;
     }
 
-    public int getImage() {
+    public TypedArray getImage() {
         return image;
     }
 

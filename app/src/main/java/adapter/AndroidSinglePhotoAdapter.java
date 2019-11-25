@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,7 +32,7 @@ public class AndroidSinglePhotoAdapter extends RecyclerView.Adapter<AndroidSingl
 
     @Override
     public void onBindViewHolder(@NonNull PhotoHolder holder, int position) {
-
+        holder.imageView.setImageResource(list.get(position));
     }
 
     @Override
@@ -40,9 +41,11 @@ public class AndroidSinglePhotoAdapter extends RecyclerView.Adapter<AndroidSingl
     }
 
     class PhotoHolder extends RecyclerView.ViewHolder {
+        ImageView imageView;
 
-         PhotoHolder(@NonNull View itemView) {
+        PhotoHolder(@NonNull View itemView) {
             super(itemView);
+            imageView = itemView.findViewById(R.id.aimg_single_row);
         }
 
     }

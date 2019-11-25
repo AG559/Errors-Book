@@ -42,18 +42,22 @@ public class FirstFragment extends Fragment {
         list.add(new AndroidDataModel("Aung Kyaw Khaing",
                 "Error inflating class android.support.v7.widget.Toolbar? ",
                 "www.google.com",
-                "whyoz His method adds unneeded complexity to view hierarchy. You will need two additional views (A layout container and the border view)",
-                R.drawable.girl_one, "20/12/2019"));
+                getResources().getString(R.string.test_html),
+                getResources().obtainTypedArray(R.array.test_img_ary),
+                "3/4/2019"
+        ));
         list.add(new AndroidDataModel("Ya Wai Aung",
-                "Error inflating class android.support.v7.widget.Toolbar? ",
+                "The repetition of “pale” reinforces the subtext of tubercular illness. In the next stanza we see the victims’ “starved lips” (starved for air?) and hear their only words, “La Belle Dame sans Merci / Thee hath in thrall!” ",
                 "www.google.com",
-                "whyoz His method adds unneeded complexity to view hierarchy. You will need two additional views (A layout container and the border view)",
-                R.drawable.girl_two, "3/4/2019"));
+                getResources().getString(R.string.test_one_html),
+                getResources().obtainTypedArray(R.array.test_img_ary_one),
+                "3/4/2019"));
         list.add(new AndroidDataModel("El Do Soe",
-                "Error inflating class android.support.v7.widget.Toolbar? ",
+                "Martin Earl lives in Coimbra, in central Portugal ",
                 "www.google.com",
-                "whyoz His method adds unneeded complexity to view hierarchy. You will need two additional views (A layout container and the border view)",
-                R.drawable.girl_three, "11/3/2018"));
+                getResources().getString(R.string.test_two_html),
+                getResources().obtainTypedArray(R.array.test_img_ary_two),
+                "11/3/2018"));
     }
 
 }
