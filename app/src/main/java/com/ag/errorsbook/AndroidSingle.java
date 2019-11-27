@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import adapter.AndroidSinglePhotoAdapter;
+import com.ag.errorsbook.adapter.AndroidSinglePhotoAdapter;
 
 public class AndroidSingle extends AppCompatActivity {
     RecyclerView recyclerView;

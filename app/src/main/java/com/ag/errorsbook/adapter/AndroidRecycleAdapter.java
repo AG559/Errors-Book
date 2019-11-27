@@ -1,4 +1,4 @@
-package adapter;
+package com.ag.errorsbook.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,15 +17,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ag.errorsbook.AndroidSingle;
 import com.ag.errorsbook.R;
+import com.ag.errorsbook.helper.CustomFilter;
+import com.ag.errorsbook.model.AndroidDataModel;
 
 import java.util.ArrayList;
 
-import model.AndroidDataModel;
-
 public class AndroidRecycleAdapter extends RecyclerView.Adapter<AndroidRecycleAdapter.AndroidRecyclerAdapterView> {
     private Context context;
-    private ArrayList<AndroidDataModel> list;
+    public ArrayList<AndroidDataModel> list;
     private ArrayList<Integer> img_list;
+    private CustomFilter customFilter;
 
     public AndroidRecycleAdapter(Context context, ArrayList<AndroidDataModel> list) {
         this.context = context;
@@ -98,5 +99,12 @@ public class AndroidRecycleAdapter extends RecyclerView.Adapter<AndroidRecycleAd
             imageView = itemView.findViewById(R.id.img_arecycler_row);
             cardView = itemView.findViewById(R.id.android_row_cardView);
         }
+    }
+
+    public CustomFilter getFilter() {
+        if (customFilter == null) {
+            customFilter = new CustomFilter(list,this);
+        }
+        return customFilter;
     }
 }

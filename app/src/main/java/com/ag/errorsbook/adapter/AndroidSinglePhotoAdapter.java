@@ -1,4 +1,4 @@
-package adapter;
+package com.ag.errorsbook.adapter;
 
 
 import android.content.Context;

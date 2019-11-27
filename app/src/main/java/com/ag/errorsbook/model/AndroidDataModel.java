@@ -1,4 +1,4 @@
-package model;
+package com.ag.errorsbook.model;
 
 import android.content.res.TypedArray;
 

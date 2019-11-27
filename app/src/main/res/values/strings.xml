@@ -25,6 +25,8 @@
 </string>
     <string name="test_two_html">Keats’s notions that the poet is “without identity” and “the most unpoetical of anything in existence” extend Coleridge’s “suspension of disbelief,” but mostly in practical ways: Keats’s knight seems a purer creation of dramatic character than Coleridge’s Ancient Mariner or Christabel, and more like a Hamlet or a King Lear, albeit in miniature. Of course, a total subjugation of “poetic character,” as Keats calls it in his letter, would be impossible, though many modern and postmodern poets have attempted just that. In this way, Keats was certainly anticipating post-Romantic strategies of expression. Through allegorical displacement Keats is able to diffuse overobvious “self-expression” and transform what in a lesser poet would remain self-pity into a self-erasing empathy for his created characters. By using the figure of the knight as a dramatically convincing surrogate for the pathos he himself feels, Keats makes powerful use of some of the most important Romantic themes: the stress of self-examination, the fraught duality of Eros and death, and individual mortality and its mirroring in the cycles of nature.
 </string>
+    <string name="search">Search</string>
+    <string name="setting">Setting</string>
     <array name="test_img_ary">
         <item>@drawable/girl_one</item>
     </array>
