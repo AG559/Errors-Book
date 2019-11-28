@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".AndroidSingle">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -40,7 +41,6 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="sans-serif-black"
-            android:text="Start new Activity with onClick() in RecyclerView "
             android:textAlignment="viewStart"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -58,7 +58,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
-            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum For single selection, we just need to hold the position that clicked in the recyclerview. When user clicks the another position, forget previous one and make new position as hold position. Make a new position on hold is not the big thing to do, but main thing is to forget the previous position. For that we are using notifyItemChanged(position) method of recyclerview.For single selection, we just need to hold the position that clicked in the recyclerview. When user clicks the another position, forget previous one and make new position as hold position. Make a new position on hold is not the big thing to do, but main thing is to forget the previous position. For that we are using notifyItemChanged(position) method of recyclerview.For single selection, we just need to hold the position that clicked in the recyclerview. When user clicks the another position, forget previous one and make new position as hold position. Make a new position on hold is not the big thing to do, but main thing is to forget the previous position. For that we are using notifyItemChanged(position) method of recyclerview."
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

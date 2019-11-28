@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
@@ -83,5 +84,16 @@ public class FirstFragment extends Fragment {
                 getResources().getString(R.string.test_two_html),
                 getResources().obtainTypedArray(R.array.test_img_ary_two),
                 "11/3/2018"));
+        list.add(new AndroidDataModel("Mr.Zero",
+                "(SearchView) MenuItemCompat.getActionView(item) always null",
+                "https://stackoverflow.com/questions/48500963/searchview-menuitemcompat-getactionviewitem-always-null",
+                "1.implemented the v7 AppCompat support library in gradle like this compile 'com.android.support:appcompat-v7:25.3.1'\n" +
+                        "2.implemented android.support.v7.widget.SearchView.OnQueryTextListenerinterface for current activity like this public class ViewActivity extends AppCompatActivity implements SearchView.OnQueryTextListener\n" +
+                        "\n" +
+                        "but the searchView is still null" +
+                        "<p><bold>Solution</bold><br> searchView = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();</p>",
+                getResources().obtainTypedArray(R.array.amenu_frag),
+                "28/11/2019"
+        ));
     }
 }

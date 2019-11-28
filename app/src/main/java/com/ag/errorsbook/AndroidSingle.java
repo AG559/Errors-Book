@@ -4,17 +4,20 @@ package com.ag.errorsbook;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 import com.ag.errorsbook.adapter.AndroidSinglePhotoAdapter;
+
+import java.util.ArrayList;
 
 public class AndroidSingle extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -45,5 +48,20 @@ public class AndroidSingle extends AppCompatActivity {
         }
         AndroidSinglePhotoAdapter adapter = new AndroidSinglePhotoAdapter(this, list);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.asingle_code_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.codeView:
+                startActivity(new Intent(this, CodeDisplay.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
