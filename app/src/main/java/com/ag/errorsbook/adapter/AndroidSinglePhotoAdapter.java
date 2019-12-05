@@ -2,103 +2,68 @@ package com.ag.errorsbook.adapter;
 
 
 import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+import com.ag.errorsbook.ImageFullScreen;
 import com.ag.errorsbook.R;
-import com.bumptech.glide.Glide;
-import com.smarteist.autoimageslider.SliderViewAdapter;
 
-public class AndroidSinglePhotoAdapter extends SliderViewAdapter<AndroidSinglePhotoAdapter.SliderAdapterVH> {
+import java.util.ArrayList;
+
+
+public class AndroidSinglePhotoAdapter extends PagerAdapter {
     private Context context;
-    private int mCount;
+    private ArrayList<Integer> images;
+    private LayoutInflater layoutInflater;
 
-    public AndroidSinglePhotoAdapter(Context context) {
+    public AndroidSinglePhotoAdapter(Context context, ArrayList<Integer> images) {
+        super();
         this.context = context;
-    }
-
-    public void setCount(int count) {
-        this.mCount = count;
-    }
-
-    @Override
-    public SliderAdapterVH onCreateViewHolder(ViewGroup parent) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.android_single_row_image, parent, false);
-        return new SliderAdapterVH(inflate);
-    }
-
-    @Override
-    public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
-
-
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        switch (position) {
-            case 0:
-                viewHolder.textViewDescription.setText("This is slider item " + position);
-                viewHolder.textViewDescription.setTextSize(16);
-                viewHolder.textViewDescription.setTextColor(Color.WHITE);
-                Glide.with(viewHolder.itemView)
-                        .load("https://scontent.frgn9-1.fna.fbcdn.net/v/t1.0-9/45358969_1964329763610438_3931455836890595328_n.jpg?_nc_cat=100&_nc_ohc=pMxtsAPotcQAQmJIvoisTJj1re_aohA4vweQ7OaB0aIpTJaetEvQC_aWw&_nc_ht=scontent.frgn9-1.fna&oh=4c1ca6cb12cf45f20b866a162da99ccb&oe=5E4913EB")
-                        .fitCenter()
-                        .into(viewHolder.imageViewBackground);
-                break;
-            case 1:
-                viewHolder.textViewDescription.setText("This is slider item " + position);
-                viewHolder.textViewDescription.setTextSize(16);
-                viewHolder.textViewDescription.setTextColor(Color.WHITE);
-                Glide.with(viewHolder.itemView)
-                        .load("https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260")
-                        .fitCenter()
-                        .into(viewHolder.imageViewBackground);
-                break;
-            case 2:
-                viewHolder.textViewDescription.setText("This is slider item " + position);
-                viewHolder.textViewDescription.setTextSize(16);
-                viewHolder.textViewDescription.setTextColor(Color.WHITE);
-                Glide.with(viewHolder.itemView)
-                        .load("https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")
-                        .fitCenter()
-                        .into(viewHolder.imageViewBackground);
-                break;
-            default:
-
-                break;
-
-        }
-
+        this.images = images;
     }
 
     @Override
     public int getCount() {
-        //slider view count could be dynamic size
-        return mCount;
+        return images.size();
     }
 
-    class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
-
-        View itemView;
-        ImageView imageViewBackground;
-        TextView textViewDescription;
-        ImageView imagegifContainer;
-
-        SliderAdapterVH(View itemView) {
-            super(itemView);
-            imageViewBackground = itemView.findViewById(R.id.iv_auto_image_slider);
-            textViewDescription = itemView.findViewById(R.id.tv_auto_image_slider);
-            imagegifContainer = itemView.findViewById(R.id.iv_gif_container);
-            this.itemView = itemView;
-        }
+    @Override
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+        return view == object;
     }
 
+    @NonNull
+    @Override
+    public Object instantiateItem(@NonNull ViewGroup container, final int position) {
+        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = layoutInflater.inflate(R.layout.android_single_row_image, null);
+        ImageView imageView = view.findViewById(R.id.asingle_row_img);
+        imageView.setImageResource(images.get(position));
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, ImageFullScreen.class);
+                i.putExtra("imgs", images);
+                i.putExtra("position", position);
+                context.startActivity(i);
+            }
+        });
+        ViewPager vp = (ViewPager) container;
+        vp.addView(view, 0);
+        return view;
+    }
+
+    @Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        ViewPager vp = (ViewPager) container;
+        View view = (View) object;
+        vp.removeView(view);
+    }
 }

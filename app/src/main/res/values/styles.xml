@@ -3,16 +3,16 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#673AB7</item>
-        <item name="colorPrimaryDark">#512D70</item>
-        <item name="colorAccent">#FF4081</item>
+        <item name="colorPrimary">#1565C0</item>
+        <item name="colorPrimaryDark">#1565C0</item>
+        <item name="colorAccent">#2196F3</item>
     </style>
 
     <!-- Base application theme. -->
-    <style name="AppThemeDetail" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppThemeDetail" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#673AB7</item>
-        <item name="colorPrimaryDark">#512DA8</item>
+        <item name="colorPrimary">#2196F3</item>
+        <item name="colorPrimaryDark">#1565C0</item>
         <item name="colorAccent">#FF4081</item>
     </style>
 

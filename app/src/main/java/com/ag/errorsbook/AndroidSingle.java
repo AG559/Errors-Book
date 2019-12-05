@@ -2,12 +2,11 @@ package com.ag.errorsbook;
 
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,12 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import com.ag.errorsbook.adapter.AndroidSinglePhotoAdapter;
-import com.smarteist.autoimageslider.IndicatorAnimations;
-import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
-import com.smarteist.autoimageslider.SliderAnimations;
-import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 
@@ -30,7 +26,7 @@ public class AndroidSingle extends AppCompatActivity {
     ArrayList<Integer> list;
     Toolbar toolbar;
     TextView title, content;
-    SliderView sliderView;
+    ViewPager viewPager;
 
     LinearLayout sliderDotspanel;
     private int dotscount;
@@ -42,11 +38,16 @@ public class AndroidSingle extends AppCompatActivity {
         setContentView(R.layout.activity_android_single);
         toolbar = findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Error Collection Book");
+        getSupportActionBar().setTitle("Error Collection");
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.flag));
+        }
 
         title = findViewById(R.id.asingle_tv_title);
         content = findViewById(R.id.asingle_tv_content);
+        viewPager = findViewById(R.id.viewPager);
 
 
         Intent i = getIntent();
@@ -57,24 +58,9 @@ public class AndroidSingle extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             content.setText(HtmlCompat.fromHtml(i.getStringExtra("description"), 0));
         }
-        sliderView = findViewById(R.id.imageSlider);
 
-        final AndroidSinglePhotoAdapter adapter = new AndroidSinglePhotoAdapter(this);
-        adapter.setCount(5);
-
-        sliderView.setSliderAdapter(adapter);
-        sliderView.setIndicatorVisibility(false);
-        sliderView.setSliderTransformAnimation(SliderAnimations.CUBEINROTATIONTRANSFORMATION);
-        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
-        sliderView.startAutoCycle();
-
-
-        sliderView.setOnIndicatorClickListener(new DrawController.ClickListener() {
-            @Override
-            public void onIndicatorClicked(int position) {
-                sliderView.setCurrentPagePosition(position);
-            }
-        });
+        final AndroidSinglePhotoAdapter adapter = new AndroidSinglePhotoAdapter(this, list);
+        viewPager.setAdapter(adapter);
 
         sliderDotspanel = findViewById(R.id.SliderDots);
         dotscount = list.size();
@@ -92,6 +78,26 @@ public class AndroidSingle extends AppCompatActivity {
             sliderDotspanel.addView(dots[ii], params);
         }
         dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot));
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                for (int i = 0; i < list.size(); i++) {
+                    dots[i].setImageResource(R.drawable.non_active_dot);
+                }
+                dots[position].setImageResource(R.drawable.active_dot);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override

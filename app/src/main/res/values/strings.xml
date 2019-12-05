@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Error Collection Book</string>
+    <string name="app_name">Problem Eraser</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -28,15 +28,15 @@
     <string name="search">Search</string>
     <string name="setting">Setting</string>
     <array name="test_img_ary">
-        <item>@drawable/girl_one</item>
+        <item>@drawable/panda</item>
     </array>
     <array name="test_img_ary_one">
-        <item>@drawable/girl_two</item>
+        <item>@drawable/panda</item>
         <item>@drawable/girl_two</item>
     </array>
     <array name="test_img_ary_two">
-        <item>@drawable/girl_three</item>
-        <item>@drawable/girl_three</item>
+        <item>@drawable/panda</item>
+        <item>@drawable/panda</item>
         <item>@drawable/girl_three</item>
     </array>
 
