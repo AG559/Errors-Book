@@ -1,10 +1,13 @@
 package com.ag.errorsbook;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,13 +20,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
-
+    private TextView userName;
     private ActionBarDrawerToggle drawerToggle;
 
     @Override
@@ -45,6 +53,17 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle = setupDrawerToggle();
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerToggle.syncState();
+
+        userName = nvDrawer.getHeaderView(0).findViewById(R.id.nav_user_nm_tv);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Log.d("Heyy", "Display Name " + user.getDisplayName());
+            Log.d("Heyy", "Email " + user.getEmail());
+            Log.d("Heyy", "Email " + user.getPhotoUrl());
+            userName.setText(user.getDisplayName());
+            //userName.setText("");
+        }
 
     }
 
@@ -86,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_third_fragment:
                 fragmentClass = ThirdFragment.class;
                 break;
+            case R.id.nav_last_logout:
+                logOut();
             default:
                 fragmentClass = FirstFragment.class;
         }
@@ -108,6 +129,20 @@ public class MainActivity extends AppCompatActivity {
         mDrawer.closeDrawers();
     }
 
+    private void logOut() {
+        AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(i);
+                        overridePendingTransition(0, 0);
+                        //finish();
+                    }
+                });
+    }
+
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -120,4 +155,9 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        logOut();
+    }
 }

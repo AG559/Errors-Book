@@ -8,8 +8,8 @@ import com.ag.errorsbook.model.AndroidDataModel;
 import java.util.ArrayList;
 
 public class CustomFilter extends Filter {
-    ArrayList<AndroidDataModel> filterList;
-    AndroidRecycleAdapter adapter;
+    private ArrayList<AndroidDataModel> filterList;
+    private AndroidRecycleAdapter adapter;
 
     public CustomFilter(ArrayList<AndroidDataModel> filterlist, AndroidRecycleAdapter adapter) {
         this.filterList = filterlist;
