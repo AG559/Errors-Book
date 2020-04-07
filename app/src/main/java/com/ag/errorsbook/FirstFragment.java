@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class FirstFragment extends Fragment {
     private ArrayList<AndroidDataModel> list;
     private SearchView searchView;
-    AndroidRecycleAdapter adapter;
+    private AndroidRecycleAdapter adapter;
 
     public FirstFragment() {
         // Required empty public constructor

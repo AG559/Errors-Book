@@ -18,18 +18,15 @@ public class LoginActivity extends AppCompatActivity {
     private static int RC_SIGN_IN = 100;
     List<AuthUI.IdpConfig> providers;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        //setContentView(R.layout.activity_login);
         // Choose authentication providers
         providers = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build(),
-                new AuthUI.IdpConfig.PhoneBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
-                new AuthUI.IdpConfig.FacebookBuilder().build(),
-                new AuthUI.IdpConfig.TwitterBuilder().build());
-
+                new AuthUI.IdpConfig.FacebookBuilder().build());
         showSignInOptions();
     }
 
@@ -40,10 +37,9 @@ public class LoginActivity extends AppCompatActivity {
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
                         .setTheme(R.style.AppTheme)
-                        .setLogo(R.drawable.baseline_vpn_key_black_48)
+                        .setLogo(R.mipmap.ic_launcher)
                         .build(),
                 RC_SIGN_IN);
-        overridePendingTransition(0, 0);
     }
 
 

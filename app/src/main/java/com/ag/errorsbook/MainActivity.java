@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
@@ -59,8 +60,14 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             Log.d("Heyy", "Display Name " + user.getDisplayName());
-            Log.d("Heyy", "Email " + user.getEmail());
-            Log.d("Heyy", "Email " + user.getPhotoUrl());
+            for (UserInfo userInfo : user.getProviderData()) {
+                if (userInfo.getProviderId().contentEquals("facebook.com")) {
+                    Log.d("Heyy", "Facebook Mail " + userInfo.getEmail());
+                } else if (userInfo.getProviderId().contentEquals("google.com")) {
+                    Log.d("Heyy", "Gmail " + userInfo.getEmail());
+                }
+            }
+            Log.d("Heyy", "Photo Url " + user.getPhotoUrl());
             userName.setText(user.getDisplayName());
             //userName.setText("");
         }

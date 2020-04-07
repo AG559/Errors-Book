@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Problem Eraser</string>
+    <string name="app_name">Zerror</string>
     <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
     <string name="facebook_application_id">245443093290669</string>
     <string name="fb_login_protocol_scheme">19389ed02017292fc7cdb44f4631ddba</string>
